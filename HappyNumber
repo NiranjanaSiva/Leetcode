@@ -1,0 +1,19 @@
+class Solution {
+    public boolean isHappy(int n) {
+        int i=0;
+        while(i<10){
+            int temp=n,s=0;
+            while(temp>0){
+                int m=temp%10;
+                s=s+(m*m);
+                temp=temp/10;
+            }
+            n=s;
+            if(s==1){
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
+}
