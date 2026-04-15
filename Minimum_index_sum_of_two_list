@@ -1,0 +1,44 @@
+class Solution {
+    public String[] findRestaurant(String[] list1, String[] list2) {
+        
+        HashMap<Integer,ArrayList<String>> h=new HashMap<>();
+        for(int i=0;i<list1.length;i++){
+            for(int j=0;j<list2.length;j++){
+                if(list1[i].equals(list2[j])){
+                    int ind=i+j;
+                    if(h.containsKey(ind)){
+                        ArrayList<String> d=h.get(ind);
+                        d.add(list1[i]);
+                        h.put(ind,d);
+                    }
+                    else{
+                        ArrayList<String> d=new ArrayList<>();
+                        d.add(list1[i]);
+                        h.put(ind,d);
+                    }
+                }
+            }
+        }
+        Set<Integer> keys = h.keySet();
+        int[] k=new int[keys.size()];
+        int k1=0;
+        for(Integer key1:keys){
+            k[k1++]=key1;
+        }
+        for(int i=0;i<k.length;i++){
+            for(int j=i+1;j<k.length;j++){
+                if(k[i]>k[j]){
+                    int temp=k[i];
+                    k[i]=k[j];
+                    k[j]=temp;
+                }
+            }
+        }
+        ArrayList<String> a=h.get(k[0]);
+                                                                                                          String[] out=new String[a.size()];
+        for(int i=0;i<a.size();i++){
+            out[i]=a.get(i);
+        }
+        return out;
+    }
+}
